@@ -1,11 +1,17 @@
-# Stack
+# Stack Perfeita
 
 * redux
+* react-router-dom
 * react-redux
 * redux-saga
 * reselect
 * axios
-* Recompose
+* recompose
+
+# Redux e Saga
+Para ambos o que sempre vai existir é a action, pois ela é importante para qualquer um dos casos.
+
+Não pode existir uma saga e um reducer escutando o mesmo nome de action
 
 # Recompose
 
