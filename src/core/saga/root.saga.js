@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga'
 import { put, takeLatest, all } from 'redux-saga/effects'
 
-export function* watchHelloSaga(){
+export function* watchHelloSaga(){  
     yield takeLatest('hello', helloWorld);
 }
 
