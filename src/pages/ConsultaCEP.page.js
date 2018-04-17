@@ -5,34 +5,62 @@ import { changeMenu } from '../core/actions/root.actions'
 import './ConsultaCEP.css';
 class ConsultaCEP extends React.Component {
 
+    state = {
+        form: {}
+    }
+
     componentDidMount() {
         this.props.changeMenu('consulta')
     }
+
+    updateFormState = (event) => {
+        
+        const formstate = this.state.form || {};
+
+        let form = {
+            ...formstate,
+            [event.target.name] : event.target.value
+            
+        }
+        this.setState((state) => {
+            return {
+                ...state,
+                form
+            };
+        })
+    }
+
+    findCep = (e) => {
+        e.preventDefault();
+        console.log(this.state);
+    }
+
 
     render() {
         return (
             <div>
                 <h1>Consulta CEP</h1>
                 <br />
-                <div class="wrap">
-                    <div class="row">
-                        <div className='right'>CEP:</div>
-                        <div className='left'>
-                            <div class="wrap">
-                                <div class="row">
-                                    <div className='left'>
-                                        <input type='text' />
-                                    </div>
-                                    <div className='right'>
-                                        <button>Buscar</button>
+                <form name='testeForm' onSubmit="">
+                    <div class="wrap">
+                        <div class="row">
+                            <div className='right'>CEP:</div>
+                            <div className='left'>
+                                <div class="wrap">
+                                    <div class="row">
+                                        <div className='left'>
+                                            <input type='text' name='cep' onChange={this.updateFormState} />
+                                            <input type='text' name='cep2' onChange={this.updateFormState} />
+                                        </div>
+                                        <div className='right'>
+                                            <button onClick={this.findCep}>Buscar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                </div>
-
+                </form>
             </div>);
     }
 }
