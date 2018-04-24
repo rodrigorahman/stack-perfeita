@@ -3,36 +3,38 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { changeMenu } from '../core/actions/root.actions'
 import './ConsultaCEP.css';
+import withForm from '../core/hocs/withForm';
+
+
 class ConsultaCEP extends React.Component {
 
     state = {
-        form: {}
     }
 
     componentDidMount() {
         this.props.changeMenu('consulta')
     }
 
-    updateFormState = (event) => {
+    // updateFormState = (event) => {
         
-        const formstate = this.state.form || {};
+    //     const formstate = this.state.form || {};
 
-        let form = {
-            ...formstate,
-            [event.target.name] : event.target.value
+    //     let form = {
+    //         ...formstate,
+    //         [event.target.name] : event.target.value
             
-        }
-        this.setState((state) => {
-            return {
-                ...state,
-                form
-            };
-        })
-    }
+    //     }
+    //     this.setState((state) => {
+    //         return {
+    //             ...state,
+    //             form
+    //         };
+    //     })
+    // }
 
     findCep = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        console.log(this.props.form);
     }
 
 
@@ -49,8 +51,8 @@ class ConsultaCEP extends React.Component {
                                 <div class="wrap">
                                     <div class="row">
                                         <div className='left'>
-                                            <input type='text' name='cep' onChange={this.updateFormState} />
-                                            <input type='text' name='cep2' onChange={this.updateFormState} />
+                                            <input type='text' name='cep' onChange={this.props.updateFormState} />
+                                            <input type='text' name='cep2' onChange={this.props.updateFormState} />
                                         </div>
                                         <div className='right'>
                                             <button onClick={this.findCep}>Buscar</button>
@@ -78,7 +80,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 const enhance = compose(
-    connect(mapStateToProps,mapDispatchToProps)
+    connect(mapStateToProps,mapDispatchToProps),
+    withForm
 )
 
 export default enhance(ConsultaCEP);
