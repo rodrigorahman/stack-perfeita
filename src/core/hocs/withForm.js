@@ -12,13 +12,13 @@ function withForm(WrappedComponent) {
             }
             
             updateFormState = (event) => {
-
-                if(this.state) console.log("tem essa porra");
-                const formstate = this.state.form || {};
-
+                console.log(this.state[event.target.form.name]);
                 let form = {
-                    ...formstate,
-                    [event.target.name]: event.target.value
+                    ...this.state.form,
+                    [event.target.form.name]: {
+                        ...this.state.form[event.target.form.name],
+                        [event.target.name]: event.target.value
+                    }                    
 
                 }
                 this.setState((state) => {

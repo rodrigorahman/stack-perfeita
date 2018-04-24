@@ -34,7 +34,8 @@ class ConsultaCEP extends React.Component {
 
     findCep = (e) => {
         e.preventDefault();
-        console.log(this.props.form);
+        console.log(this.props.form.testeForm);
+        
     }
 
 
